@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Music for everyone</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="icon" type="image/x-icon" href="images/spotify.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+
+        }
+
+        .sidebar {
+            background-color: black;
+            width: 32%;
+
+        }
+
+        .main {
+            background-color: #1d103e;
+            flex: 1;
+            margin-top: 0.4rem;
+        }
+
+        .player {
+
+            background-color: #000000;
+            height: 5rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+
+        }
+
+
+        a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1rem;
+            font-weight: 600;
+        }
+
+        .box1 {
+            display: flex;
+            flex-direction: column;
+            background-color: #121212;
+            height: 7rem;
+            border-radius: 0.7rem;
+            margin: 0.4rem;
+        }
+
+        .home {
+            line-height: 4rem;
+            margin-left: 1.5rem;
+        }
+
+        .home i {
+            font-size: 1.5rem;
+            position: relative;
+            top: 0.2rem;
+            color: white;
+        }
+
+        .search i {
+            position: relative;
+            top: 0rem;
+        }
+
+        .lib-icon i {
+            position: relative;
+            top: 0rem;
+
+        }
+
+        .search i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .search {
+            margin-left: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .search:hover {
+            opacity: 1;
+        }
+
+        .box2 {
+            display: flex;
+            flex-direction: column;
+            background-color: #121212;
+            height: 28.9rem;
+            border-radius: 0.7rem;
+            margin: 0.4rem;
+        }
+
+        i {
+            color: white;
+        }
+
+        .library {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 1rem;
+            margin-right: 1rem;
+
+        }
+
+        .library a {
+            margin-right: 4rem;
+        }
+
+        .playlist {
+            background-color: #242424;
+            height: 9rem;
+            border-radius: 0.7rem;
+            margin: 0.4rem;
+            margin-top: 2rem;
+        }
+
+        .playlist button {
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            margin-left: 1rem;
+        }
+
+        .playlist h3,
+        p {
+            font-size: 15px;
+            margin-left: 1rem;
+        }
+
+        .podcast {
+            background-color: #242424;
+            height: 10rem;
+            border-radius: 0.7rem;
+            margin: 0.4rem;
+            margin-top: 1rem;
+        }
+
+        .podcast button {
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            margin-left: 1rem;
+
+        }
+
+        button:hover {
+            transform: scale(1.03);
+        }
+
+        .podcast h3,
+        p {
+            font-size: 15px;
+            margin-left: 1rem;
+        }
+
+        .lib-icon {
+            opacity: 0.7;
+        }
+
+        .lib-icon:hover {
+            opacity: 1;
+        }
+
+        .library i {
+            opacity: 0.7;
+        }
+
+        .library i:hover {
+            opacity: 1;
+        }
+
+        .pac {
+            margin-top: 1.5rem;
+        }
+
+        .main {
+            overflow: auto;
+        }
+
+        .main span {
+            background-color: #121212;
+            border-radius: 1rem;
+            opacity: 0.5;
+            font-size: 2rem;
+
+        }
+
+        .main span:hover {
+
+            opacity: 1;
+
+
+        }
+
+        .arrow {
+            margin-left: 1.5rem;
+        }
+
+        .header {
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            height: 4rem;
+            position: static;
+            position: absolute;
+            width: 100%;
+            background-color: #1d103e;
+        }
+
+        .btn {
+            position: relative;
+            top: 1rem;
+            right: 29rem;
+        }
+
+
+        .btn button {
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: 800;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        .btn-2 {
+            background-color: #121212;
+            color: white;
+        }
+
+        .btn i {
+            background-color: #121212;
+            border-radius: 1rem;
+            font-size: 1.5rem;
+            height: 1.6rem;
+            width: 6%;
+            margin-left: 0.7rem;
+            opacity: 0.9;
+            position: relative;
+            top: 0%;
+        }
+
+        .btn i:hover {
+            cursor: pointer;
+
+        }
+
+        .music-card {
+            margin-top: 6rem;
+        }
+
+        .image {
+            width: 16%;
+            height: 4rem;
+            padding: 0.5rem;
+            /* margin-top: 0.2rem; */
+        }
+
+        img {
+            width: 100%;
+            height: 4rem;
+            border-radius: 0.3rem;
+        }
+
+
+        .player {
+            height: 6.5rem;
+            display: flex;
+            /* border: 2px solid green; */
+        }
+
+        .left {
+            display: flex;
+            /* border: 2px solid red; */
+            width: 30%;
+            justify-content: space-evenly;
+
+        }
+
+        .combine,
+        i,
+        span {
+            position: relative;
+            top: 1rem;
+        }
+
+        .combine i,
+        span:hover {
+            opacity: 1;
+        }
+
+        i:hover {
+            opacity: 1;
+        }
+
+        .janet {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            line-height: 2rem;
+        }
+
+        .glance {
+            font-size: 0.9rem;
+        }
+
+        .glance a {
+            font-weight: 500;
+        }
+
+        i,
+        span {
+            opacity: 0.6;
+            margin-top: 0.5rem;
+        }
+
+        .player i {
+            font-size: 20px;
+
+        }
+
+        .center {
+            /* border: 2px solid red; */
+            width: 40%;
+            color: white;
+            display: flex;
+            justify-content: center;
+        }
+
+        .play {
+            height: 4rem;
+            display: flex;
+            width: 50%;
+            justify-content: space-evenly;
+        }
+
+        .play i {
+            opacity: 0.8;
+        }
+
+        .play i:hover {
+            opacity: 1;
+        }
+
+        .circle i {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .circle:hover {
+            transform: scale(1.02);
+        }
+
+        .rigth {
+            /* border: 2px solid yellow; */
+            width: 30%;
+            color: white;
+        }
+
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-evenly;
+            width: 82%;
+        }
+
+
+        .center input {
+            position: relative;
+            top: 1.2rem;
+            height: 4px;
+            appearance: none;
+            width: 57%;
+            margin: 2px;
+            border-radius: 8px;
+            transition: 0.2s ease;
+            background-color: white;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: green;
+        }
+
+        input[type="range"]:hover {
+            background: green;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background-color: white;
+        }
+
+        .right input {
+            height: 4px;
+            appearance: none;
+            width: 30%;
+            margin: 2px;
+            border-radius: 8px;
+            transition: 0.2s ease;
+            background-color: white;
+        }
+
+        .right input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: green;
+        }
+
+        .right input[type="range"]:hover {
+            background: green;
+        }
+
+        .right input[type="range"]::-webkit-slider-thumb:hover {
+            background-color: white;
+        }
+
+        .items {
+            display: flex;
+            justify-content: space-evenly;
+            width: 41%;
+        }
+
+        .right {
+            position: relative;
+            top: 0.8rem;
+            display: flex;
+            flex: 1;
+            justify-content: center
+        }
+
+        .right input {
+            position: relative;
+            top: 1.8rem;
+        }
+
+
+
+        .cards {
+            height: 12rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            justify-content: space-evenly;
+        }
+
+        .gm-card {
+            background-color: #312b42;
+            border-radius: 0.3rem;
+            height: 5rem;
+            width: 30%;
+            display: flex;
+            flex-wrap: no-wrap;
+
+        }
+
+        .img {
+            width: 30%;
+        }
+
+        .img img {
+            width: 100%;
+            height: 100%;
+            border-top-right-radius: 0%;
+            border-bottom-right-radius: 0%;
+        }
+
+        .first-line {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            width: 41%;
+            margin-top: 2rem;
+        }
+
+        .next-line {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            width: 30%;
+            line-height: 1.5rem;
+
+        }
+
+        #bolly-dance {
+            width: 40%;
+        }
+
+        .cover {
+            width: 21%;
+            height: 16rem;
+            /* border: 2px solid green; */
+            border-radius: 0.3rem;
+            background-color: #181818;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
+        }
+
+        .cover:hover {
+            background-color: #242424;
+            cursor: pointer;
+            box-shadow: 1px 5px 5px #242424;
+        }
+
+        .card1 {
+            width: 83%;
+            border-radius: 0.5rem;
+            height: 10rem;
+            /* border: 2px solid pink; */
+            margin: auto;
+            margin-top: 1rem;
+        }
+
+        .card1 img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .recently-played {
+            background-color: #121212;
+        }
+
+        .recently-played h1 {
+            margin-left: 2rem;
+            padding-top: 2rem;
+        }
+
+        .recently-played h1:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .four-card {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .cover p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            margin-top: 2rem;
+        }
+
+        footer {
+            height: 44rem;
+            background-color: #121212;
+
+        }
+
+        .one a {
+            display: block;
+            font-weight: 100;
+            opacity: 0.6;
+            line-height: 2rem;
+        }
+
+        .two a {
+            display: block;
+            font-weight: 100;
+            opacity: 0.6;
+            line-height: 2rem;
+        }
+
+        .three a {
+            display: block;
+            font-weight: 100;
+            opacity: 0.6;
+            line-height: 2rem;
+            margin: auto;
+        }
+
+        .three {
+            width: 30%;
+            margin-left: 5rem;
+        }
+
+        .flex {
+            display: flex;
+            width: 50%;
+            height: 19rem;
+            justify-content: space-evenly;
+            position: relative;
+            top: 2rem;
+        }
+
+
+        .one a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .two a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .three a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .social-media {
+            width: 10rem;
+            margin-right: 1rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+            justify-content: space-evenly;
+
+        }
+
+        .social-media a i {
+            font-size: 2rem;
+
+        }
+
+        .f-flex {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        hr {
+            margin-left: 4rem;
+            margin-right: 4rem;
+        }
+
+        footer a {
+            font-weight: 100;
+            opacity: 0.6;
+        }
+
+        footer a:hover {
+            opacity: 1;
+        }
+
+        .a-contain {
+            display: inline;
+            margin-left: 3rem;
+        }
+
+        footer p {
+            display: inline;
+            margin-left: 6rem;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div class="container">
+
+        <div class="sidebar">
+
+            <div class="box1">
+
+                <div class="home">
+
+                    <i class="fa-solid fa-house"></i>
+                    <a href="#">Home</a>
+                </div>
+
+                <div class="search">
+                    <i class="fa">&#xf002;</i>
+                    <a href="#">Search</a>
+                </div>
+
+            </div>
+
+            <div class="box2">
+
+                <div class="library">
+                    <div class="lib-icon">
+
+                        <i class="fa-solid fa-barcode"></i>
+                        <a href="#">Your Library</a>
+                    </div>
+                    <i class="fa-regular fa-plus"></i>
+                    <i class="fa-sharp fa-solid fa-arrow-right"></i>
+                </div>
+
+                <div class="playlist">
+                    <div class="pac">
+
+                        <h3>Create your first playlist</h3>
+                        <p>It's easy, we'll help you</p>
+                        <button>Create playlist</button>
+                    </div>
+                </div>
+
+                <div class="podcast">
+
+                    <div class="pac">
+                        <h3>Let's find some podcasts to follow</h3>
+                        <p>We'll keep you updated on new episodes</p>
+                        <button>Browse podcasts</button>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="main">
+
+            <div class="header">
+
+                <div class="arrow">
+
+                    <span class="material-symbols-outlined">
+                        arrow_back_ios
+                    </span>
+
+                    <span class="material-symbols-outlined">
+                        arrow_forward_ios
+                    </span>
+
+                </div>
+
+                <div class="btn">
+
+                    <button>Explore premium</button>
+                    <button class="btn-2">Install app</button>
+                    <i class="fa-regular fa-user"></i>
+
+                </div>
+
+            </div>
+
+            <div class="music-card">
+
+                <h1 style="margin-left: 2rem;">Good Afternoon</h2>
+
+                    <div class="cards">
+
+                        <div class="gm-card">
+
+                            <div class="img">
+
+                                <img src="images/blue-heart.png" alt="">
+                            </div>
+                            <p class="first-line">Liked Songs</p>
+                        </div>
+
+                        <div class="gm-card">
+
+                            <div class="img">
+                                <img src="images/hot-hits.jfif" alt="">
+                            </div>
+                            <p class="first-line">Hot Hits Hindi</p>
+                        </div>
+
+                        <div class="gm-card">
+
+                            <div class="img">
+                                <img src="images/chala chal.jfif" alt="">
+                            </div>
+                            <p class="first-line">Chala Chal</p>
+                        </div>
+
+                        <div class="gm-card">
+
+                            <div class="img">
+                                <img src="images/allu.jfif" alt="">
+                            </div>
+                            <p class="next-line">Tollywood Pearls</p>
+                        </div>
+
+                        <div class="gm-card">
+
+                            <div class="img">
+                                <img src="images/nora.jfif" alt="">
+                            </div>
+
+                            <p class="next-line" id="bolly-dance">Bollywood Dance Music</p>
+                        </div>
+
+                        <div class="gm-card">
+
+                            <div class="img">
+                                <img src="images/moosewala.jfif" alt="">
+                            </div>
+                            <p class="next-line">Hot Hits Punjabi</p>
+                        </div>
+
+                    </div>
+
+            </div>
+
+
+            <div class="recently-played">
+
+                <h1>Recently Played</h1>
+
+                <div class="four-card">
+
+                    <div class="cover">
+
+                        <div class="card1">
+
+                            <img src="images/berg's.jfif" alt="">
+                        </div>
+
+                        <p>Why does my breat...</p>
+
+                    </div>
+
+                    <div class="cover">
+
+                        <div class="card1">
+
+                            <img src="images/mahabharat.jfif" alt="">
+                        </div>
+
+                        <p>Mahabharat Episod...</p>
+
+                    </div>
+
+                    <div class="cover">
+
+                        <div class="card1">
+
+                            <img src="images/bhagwat-gita.jfif" alt="">
+                        </div>
+
+                        <p>SHRIMAD BHAGWA...</p>
+
+                    </div>
+
+                    <div class="cover">
+
+                        <div class="card1">
+
+                            <img src="images/kuch-kuch-hota-hai.jfif" alt="">
+                        </div>
+
+                        <p>Kuch Kuch Hota...</p>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+            <footer>
+                <div class="foot">
+
+                    <div class="f-flex">
+
+                        <div class="flex">
+
+                            <div class="one">
+                                <h4>Company</h4>
+                                <a href="#">About</a>
+                                <a href="#">Jobs</a>
+                                <a href="#">For the Record</a>
+                            </div>
+
+                            <div class="two">
+                                <h4>Communities</h4>
+                                <a href="#">For Artists</a>
+                                <a href="#">Developers</a>
+                                <a href="#">Advertising</a>
+                                <a href="#">Investors</a>
+                                <a href="#">Vendors</a>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="social-media">
+
+                            <a href="https://www.instagram.com/aanshuyadavv/"> <i
+                                    class="fa-brands fa-instagram"></i></a>
+                            <a href="https://twitter.com/aanshuyadavv"> <i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://www.linkedin.com/in/anshu-yadav-9422a01b2/"> <i
+                                    class="fa-brands fa-linkedin"></i></a>
+
+                        </div>
+
+                    </div>
+                    <div class="three">
+
+                        <h4>Useful links</h4>
+                        <a href="#">Support</a>
+                        <a href="#">Free Mobile App</a>
+
+                    </div>
+
+                </div>
+                <br>
+                <hr>
+                <br>
+                <br>
+
+                <div class="a-contain">
+
+                    <a href="#">Legal</a>
+                    <a href="#">Privacy Center</a>
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">About Ads</a>
+                    <a href="#">Accessibility</a>
+                </div>
+
+
+                <p>© 2023 Spotify AB</p>
+
+            </footer>
+
+
+        </div>
+
+
+        <div class="player">
+
+            <div class="left">
+
+                <div class="image" style="display: inline-block;">
+                    <img src="/images/player.jfif" alt="">
+                </div>
+
+
+
+                <div class="combine">
+
+                    <div class="glance">
+                        <a href="#">Glance Out A Casement Window</a>
+                    </div>
+
+                    <div class="janet">
+                        <a href="#">Janet Redger</a>
+                    </div>
+
+                </div>
+
+                <i class="fa-regular fa-heart"></i>
+
+                <span class="material-symbols-outlined" id="span">
+                    comment_bank
+                </span>
+
+            </div>
+
+
+            <div class="center">
+
+                <div class="play">
+
+                    <i class="fa-sharp fa-solid fa-shuffle"></i>
+                    <i class="fa-solid fa-backward-step"></i>
+                    <div class="circle">
+
+                        <i class="fa-regular fa-circle-play"></i>
+                    </div>
+                    <i class="fa-solid fa-forward-step"></i>
+                    <i class="fa-solid fa-repeat"></i>
+                </div>
+
+                <div class="progress">
+
+                    <div class="time1">
+
+                        <p>0:00</p>
+                    </div>
+
+                    <input type="range" min="0" max="100">
+
+                    <div class="time1">
+
+                        <p>3:19</p>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="right">
+
+                <div class="items">
+
+                    <span class="material-symbols-outlined">
+                        smart_display
+                    </span>
+
+                    <span class="material-symbols-outlined">
+                        queue_music
+                    </span>
+
+                    <span class="material-symbols-outlined">
+                        tap_and_play
+                    </span>
+
+                    <span class="material-symbols-outlined">
+                        volume_up
+                    </span>
+
+                </div>
+
+                <input type="range" min="0" max="100">
+
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>
